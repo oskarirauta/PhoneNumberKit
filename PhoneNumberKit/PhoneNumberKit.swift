@@ -10,7 +10,8 @@ import Foundation
 #if os(iOS)
 import CoreTelephony
 #endif
-    
+import LocaleKit
+
 public final class PhoneNumberKit: NSObject {
     
     // Manager objects
@@ -159,7 +160,7 @@ public final class PhoneNumberKit: NSObject {
             return isoCountryCode.uppercased()
         }
 #endif
-        let currentLocale = Locale.current
+        let currentLocale = Locale.appLocale
         if #available(iOS 10.0, *), let countryCode = currentLocale.regionCode {
             return countryCode.uppercased()
         } else {
