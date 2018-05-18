@@ -16,6 +16,7 @@
 		347209751BB808D1004DE6DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 347209731BB808D1004DE6DA /* LaunchScreen.storyboard */; };
 		347209801BB808D1004DE6DA /* SampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3472097F1BB808D1004DE6DA /* SampleTests.swift */; };
 		3472098E1BB80A4F004DE6DA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3472098D1BB80A4F004DE6DA /* Foundation.framework */; };
+		6E88F4A420AD4D88002969A7 /* NumPad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E88F4A320AD4D88002969A7 /* NumPad.framework */; };
 		6EB6963A20ACDF6F0077EE6D /* LocaleKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB6963920ACDF6F0077EE6D /* LocaleKit.framework */; };
 		6EB6963C20ACDF790077EE6D /* PhoneNumberKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB6963B20ACDF790077EE6D /* PhoneNumberKit.framework */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,7 @@
 		3472097F1BB808D1004DE6DA /* SampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleTests.swift; sourceTree = "<group>"; };
 		347209811BB808D1004DE6DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3472098D1BB80A4F004DE6DA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6E88F4A320AD4D88002969A7 /* NumPad.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NumPad.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EB6963920ACDF6F0077EE6D /* LocaleKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LocaleKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EB6963B20ACDF790077EE6D /* PhoneNumberKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PhoneNumberKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -66,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E88F4A420AD4D88002969A7 /* NumPad.framework in Frameworks */,
 				6EB6963C20ACDF790077EE6D /* PhoneNumberKit.framework in Frameworks */,
 				6EB6963A20ACDF6F0077EE6D /* LocaleKit.framework in Frameworks */,
 				344D875A1BDED6A600487684 /* ContactsUI.framework in Frameworks */,
@@ -131,6 +134,7 @@
 		6EB6963820ACDF6F0077EE6D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6E88F4A320AD4D88002969A7 /* NumPad.framework */,
 				6EB6963B20ACDF790077EE6D /* PhoneNumberKit.framework */,
 				6EB6963920ACDF6F0077EE6D /* LocaleKit.framework */,
 			);
@@ -328,7 +332,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -379,7 +383,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				SDKROOT = iphoneos;

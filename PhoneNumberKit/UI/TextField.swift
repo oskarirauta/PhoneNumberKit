@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import LocaleKit
 
 /// Custom text field that formats phone numbers
 open class PhoneNumberTextField: UITextField, UITextFieldDelegate {
@@ -36,7 +37,7 @@ open class PhoneNumberTextField: UITextField, UITextFieldDelegate {
     }
     
     /// Override region to set a custom region. Automatically uses the default region code.
-    public var defaultRegion = PhoneNumberKit.defaultRegionCode() {
+    public var defaultRegion = Locale.appLocale.regionCode ?? PhoneNumberKit.defaultRegionCode() {
         didSet {
             partialFormatter.defaultRegion = defaultRegion
         }
@@ -61,7 +62,7 @@ open class PhoneNumberTextField: UITextField, UITextFieldDelegate {
         }
     }
     
-    let partialFormatter: PartialFormatter
+    public let partialFormatter: PartialFormatter
     
     let nonNumericSet: NSCharacterSet = {
         var mutableSet = NSMutableCharacterSet.decimalDigit().inverted
@@ -203,6 +204,8 @@ open class PhoneNumberTextField: UITextField, UITextFieldDelegate {
     
     open func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 
+        print("Should change chars..")
+        
         // This allows for the case when a user autocompletes a phone number:
         if range == NSRange(location: 0, length: 0) && string == " " {
             return true
