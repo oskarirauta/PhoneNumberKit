@@ -14,12 +14,11 @@ Manager for parsing flow.
 final class ParseManager {
     
     weak var metadataManager: MetadataManager?
-    let parser: PhoneNumberParser
     weak var regexManager: RegexManager?
+    lazy var parser: PhoneNumberParser = PhoneNumberParser(regex: self.regexManager!, metadata: self.metadataManager!)
 
     init(metadataManager: MetadataManager, regexManager: RegexManager) {
         self.metadataManager = metadataManager
-        self.parser = PhoneNumberParser(regex: regexManager, metadata: metadataManager)
         self.regexManager = regexManager
     }
 

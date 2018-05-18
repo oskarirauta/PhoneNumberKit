@@ -23,8 +23,8 @@ class ViewController: UIViewController, CNContactPickerDelegate {
         textField.becomeFirstResponder()
         textField.addTarget(self, action: #selector(self.phoneNo(_:)), for: .allEvents)
         textField.delegate = self.del
-        textField.inputAccessoryView = DoneBar(delegate: self.textField)
-        textField.inputView = NumPad(delegate: self.textField, type: .phone)
+        textField.inputAccessoryView = DoneBar()
+        textField.inputView = NumPad(type: .phone)
         textField.keyboardType = .phonePad
     }
 

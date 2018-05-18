@@ -22,14 +22,14 @@ final class MetadataManager {
      */
     public init () {
         territories = populateTerritories()
-        for item in territories {
-            var currentTerritories: [MetadataTerritory] = territoriesByCode[item.countryCode] ?? [MetadataTerritory]()
-            currentTerritories.append(item)
-            territoriesByCode[item.countryCode] = currentTerritories
-            if mainTerritoryByCode[item.countryCode] == nil || item.mainCountryForCode == true {
-                mainTerritoryByCode[item.countryCode] = item
+        territories.forEach {
+            var currentTerritories: [MetadataTerritory] = territoriesByCode[$0.countryCode] ?? []
+            currentTerritories.append($0)
+            territoriesByCode[$0.countryCode] = currentTerritories
+            if (( mainTerritoryByCode[$0.countryCode] == nil ) || ( $0.mainCountryForCode == true )) {
+                mainTerritoryByCode[$0.countryCode] = $0
             }
-            territoriesByCountry[item.codeID] = item
+            territoriesByCountry[$0.codeID] = $0
         }
     }
     

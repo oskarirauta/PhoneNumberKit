@@ -33,9 +33,7 @@ public final class PartialFormatter {
 
     
     public var defaultRegion: String {
-        didSet {
-            updateMetadataForDefaultRegion()
-        }
+        didSet { updateMetadataForDefaultRegion() }
     }
     
     func updateMetadataForDefaultRegion() {
@@ -58,9 +56,7 @@ public final class PartialFormatter {
     //MARK: Status
     
     public var currentRegion: String {
-        get {
-            return currentMetadata?.codeID ?? defaultRegion
-        }
+        get { return currentMetadata?.codeID ?? defaultRegion }
     }
     
     public func nationalNumber(from rawNumber: String) -> String {

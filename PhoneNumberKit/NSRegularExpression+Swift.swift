@@ -9,7 +9,8 @@
 import Foundation
 
 extension String {
-	func nsRange(from range: Range<String.Index>) -> NSRange {
+        
+    func nsRange(from range: Range<String.Index>) -> NSRange {
 		let utf16view = self.utf16
 		let from = range.lowerBound.samePosition(in: utf16view) ?? self.startIndex
 		let to = range.upperBound.samePosition(in: utf16view) ?? self.endIndex

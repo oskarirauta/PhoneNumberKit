@@ -19,7 +19,6 @@ final class Formatter {
     init(regexManager: RegexManager) {
         self.regexManager = regexManager
     }
-
     
     // MARK: Formatting functions
     
@@ -52,9 +51,7 @@ final class Formatter {
             if let preferredExtnPrefix = regionMetadata.preferredExtnPrefix {
                 return "\(preferredExtnPrefix)\(extns)"
             }
-            else {
-                return "\(PhoneNumberConstants.defaultExtnPrefix)\(extns)"
-            }
+            return "\(PhoneNumberConstants.defaultExtnPrefix)\(extns)"
         }
         return nil
     }
@@ -119,12 +116,7 @@ public extension PhoneNumber {
      - Returns: A string representing the adjusted national number.
      */
     public func adjustedNationalNumber() -> String {
-        if self.leadingZero == true {
-            return "0" + String(nationalNumber)
-        }
-        else {
-            return String(nationalNumber)
-        }
+        return self.leadingZero == true ? ( "0" + String(nationalNumber)) : String(nationalNumber)
     }
     
 }

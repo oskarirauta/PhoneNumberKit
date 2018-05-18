@@ -12,9 +12,9 @@ final class RegexManager {
     
     // MARK: Regular expression pool
 
-    var regularExpresionPool = [String : NSRegularExpression]()
+    var regularExpresionPool: [String : NSRegularExpression] = [:]
 
-    var spaceCharacterSet: CharacterSet = {
+    lazy var spaceCharacterSet: CharacterSet = {
         let characterSet = NSMutableCharacterSet(charactersIn: "\u{00a0}")
         characterSet.formUnion(with: CharacterSet.whitespacesAndNewlines)
         return characterSet as CharacterSet
@@ -27,174 +27,87 @@ final class RegexManager {
     // MARK: Regular expression
     
     func regexWithPattern(_ pattern: String) throws -> NSRegularExpression {
-        if let regex = regularExpresionPool[pattern] {
-            return regex
+        
+        guard let regex = regularExpresionPool[pattern] else {
+            guard let regularExpression: NSRegularExpression = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) else { throw PhoneNumberError.generalError }
+            regularExpresionPool[pattern] = regularExpression
+            return regularExpression
         }
-        else {
-            do {
-                let regularExpression: NSRegularExpression
-                regularExpression =  try NSRegularExpression(pattern: pattern, options:NSRegularExpression.Options.caseInsensitive)
-                regularExpresionPool[pattern] = regularExpression
-                return regularExpression
-            }
-            catch {
-                throw PhoneNumberError.generalError
-            }
-        }
+        
+        return regex
     }
     
     func regexMatches(_ pattern: String, string: String) throws -> [NSTextCheckingResult] {
-        do {
-            let internalString = string
-            let currentPattern =  try regexWithPattern(pattern)
-            let matches = currentPattern.matches(in: internalString)
-            return matches
-        }
-        catch {
-            throw PhoneNumberError.generalError
-        }
+        guard
+            let currentPattern: NSRegularExpression = try? self.regexWithPattern(pattern)
+            else { throw PhoneNumberError.generalError }
+        return currentPattern.matches(in: String(string))
     }
     
     func phoneDataDetectorMatch(_ string: String) throws -> NSTextCheckingResult {
-        let fallBackMatches = try regexMatches(PhoneNumberPatterns.validPhoneNumberPattern, string: string)
-        if let firstMatch = fallBackMatches.first {
-            return firstMatch
-        }
-        else {
-            throw PhoneNumberError.notANumber
-        }
+        guard
+            let fallBackMatches = try? regexMatches(PhoneNumberPatterns.validPhoneNumberPattern, string: string),
+            let firstMatch: NSTextCheckingResult = fallBackMatches.first
+            else { throw PhoneNumberError.notANumber }
+        return firstMatch
     }
 
     // MARK: Match helpers
     
     func matchesAtStart(_ pattern: String, string: String) -> Bool {
-        do {
-            let matches = try regexMatches(pattern, string: string)
-            for match in matches {
-                if match.range.location == 0 {
-                    return true
-                }
-            }
-        }
-        catch {
-        }
-        return false
+        let matches: [NSTextCheckingResult]? = try? regexMatches(pattern, string: string)
+        return ( matches?.filter { $0.range.location == 0}.count ?? 0) == 0 ? false : true
     }
     
     func stringPositionByRegex(_ pattern: String, string: String) -> Int {
-        do {
-            let matches = try regexMatches(pattern, string: string)
-            if let match = matches.first {
-                return (match.range.location)
-            }
-            return -1
-        } catch {
-            return -1
-        }
+        let matches: [NSTextCheckingResult]? = try? regexMatches(pattern, string: string)
+        return matches?.first?.range.location ?? -1
     }
     
     func matchesExist(_ pattern: String?, string: String) -> Bool {
-        guard let pattern = pattern else {
-            return false
-        }
-        do {
-            let matches = try regexMatches(pattern, string: string)
-            return matches.count > 0
-        }
-        catch {
-            return false
-        }
+        guard
+            let pattern: String = pattern,
+            let matches: [NSTextCheckingResult] = try? regexMatches(pattern, string: string)
+            else { return false }
+        
+        return matches.count > 0
     }
 
     
     func matchesEntirely(_ pattern: String?, string: String) -> Bool {
-        guard var pattern = pattern else {
-            return false
-        }
-        pattern = "^(\(pattern))$"
-        return matchesExist(pattern, string: string)
+        return pattern == nil ? false : matchesExist("^(\(pattern!))$", string: string)
     }
     
     func matchedStringByRegex(_ pattern: String, string: String) throws -> [String] {
-        do {
-            let matches = try regexMatches(pattern, string: string)
-            var matchedStrings = [String]()
-            for match in matches {
-                let processedString = string.substring(with: match.range)
-                matchedStrings.append(processedString)
-            }
-            return matchedStrings
-        }
-        catch {
-        }
-        return []
+        guard let matches: [NSTextCheckingResult] = try? regexMatches(pattern, string: string) else { return [] }
+        return matches.map { string.substring(with: $0.range) }
     }
     
     // MARK: String and replace
     
-    func replaceStringByRegex(_ pattern: String, string: String) -> String {
-        do {
-            var replacementResult = string
-            let regex =  try regexWithPattern(pattern)
-            let matches = regex.matches(in: string)
-            if matches.count == 1 {
-                let range = regex.rangeOfFirstMatch(in: string)
-                if range != nil {
-                    replacementResult = regex.stringByReplacingMatches(in: string, options: [], range: range, withTemplate: "")
-                }
-                return replacementResult
-            }
-            else if matches.count > 1 {
-                replacementResult = regex.stringByReplacingMatches(in: string, withTemplate: "")
-            }
-            return replacementResult
-        } catch {
-            return string
+    func replaceStringByRegex(_ pattern: String, string: String, template: String = "") -> String {
+        guard let regex: NSRegularExpression = try? regexWithPattern(pattern) else { return string }
+        let matches: [NSTextCheckingResult] = regex.matches(in: string)
+        if ( matches.count == 1 ) {
+            let range: Range<String.Index>? = regex.rangeOfFirstMatch(in: string)
+            return range == nil ? string : regex.stringByReplacingMatches(in: string, options: [], range: range, withTemplate: template)
+        } else if ( matches.count > 1 ) {
+            return regex.stringByReplacingMatches(in: string, withTemplate: template)
         }
-    }
-    
-    func replaceStringByRegex(_ pattern: String, string: String, template: String) -> String {
-        do {
-            var replacementResult = string
-            let regex =  try regexWithPattern(pattern)
-            let matches = regex.matches(in: string)
-            if matches.count == 1 {
-                let range = regex.rangeOfFirstMatch(in: string)
-                if range != nil {
-                    replacementResult = regex.stringByReplacingMatches(in: string, options: [], range: range, withTemplate: template)
-                }
-                return replacementResult
-            }
-            else if matches.count > 1 {
-                replacementResult = regex.stringByReplacingMatches(in: string, withTemplate: template)
-            }
-            return replacementResult
-        } catch {
-            return string
-        }
+        return string
     }
     
     func replaceFirstStringByRegex(_ pattern: String, string: String, templateString: String) -> String {
-        do {
-            let regex = try regexWithPattern(pattern)
-            let range = regex.rangeOfFirstMatch(in: string)
-            if range != nil {
-                return regex.stringByReplacingMatches(in: string, options: [], range: range, withTemplate: templateString)
-            }
-            return string
-        } catch {
-            return String()
-        }
+        guard let regex: NSRegularExpression = try? regexWithPattern(pattern) else { return "" }
+        guard let range: Range<String.Index> = regex.rangeOfFirstMatch(in: string) else { return string }
+        return regex.stringByReplacingMatches(in: string, options: [], range: range, withTemplate: templateString)
     }
     
     func stringByReplacingOccurrences(_ string: String, map: [String:String]) -> String {
-        var targetString = String()
-        for i in 0 ..< string.count {
-            let oneChar = string[string.index(string.startIndex, offsetBy: i)]
-            let keyString = String(oneChar).uppercased()
-            if let mappedValue = map[keyString] {
-                targetString.append(mappedValue)
-            }
+        
+        var targetString: String = ""
+        string.map { String($0).uppercased() }.forEach {
+            if let mappedValue = map[$0] { targetString.append(mappedValue) }
         }
         return targetString
     }
@@ -202,24 +115,15 @@ final class RegexManager {
     // MARK: Validations
     
     func hasValue(_ value: String?) -> Bool {
-        if let valueString = value {
-            if valueString.trimmingCharacters(in: spaceCharacterSet).count == 0 {
-                return false
-            }
-            return true
-        }
-        else {
-            return false
-        }
+        guard
+            let valueString: String = value,
+            valueString.trimmingCharacters(in: spaceCharacterSet).count != 0
+            else { return false }
+        return true
     }
     
     func testStringLengthAgainstPattern(_ pattern: String, string: String) -> Bool {
-        if (matchesEntirely(pattern, string: string)) {
-            return true
-        }
-        else {
-            return false
-        }
+        return matchesEntirely(pattern, string: string) ? true : false
     }
     
 }
@@ -229,9 +133,19 @@ final class RegexManager {
 // MARK: Extensions
 
 extension String {
+    
+    func substring(from: Int) -> String {
+        let start = index(startIndex, offsetBy: from)
+        return String(self[start ..< endIndex])
+    }
+    
+    func substring(to: Int) -> String {
+        let end = index(startIndex, offsetBy: to)
+        return String(self[startIndex ..< end])
+    }
+
     func substring(with range: NSRange) -> String {
-        let nsString = self as NSString
-        return nsString.substring(with: range)
+        return (self as NSString).substring(with: range)
     }
 }
 
