@@ -29,7 +29,7 @@ open class PhoneNumberFieldDelegate: NSObject, PhoneNumberFieldDelegateProtocol 
 
     private(set) weak var textInput: UITextInput?
     
-    public var defaultRegion = Locale.appLocale.regionCode ?? PhoneNumberKit.defaultRegionCode() {
+    open var defaultRegion: String = Locale.appLocale.regionCode ?? PhoneNumberKit.defaultRegionCode() {
         didSet { self.partialFormatter.defaultRegion = defaultRegion }
     }
 
@@ -37,7 +37,9 @@ open class PhoneNumberFieldDelegate: NSObject, PhoneNumberFieldDelegateProtocol 
         didSet { self.partialFormatter.withPrefix = withPrefix }
     }
     
-    open var isPartialFormatterEnabled = true
+    open var isPartialFormatterEnabled: Bool = true
+    
+    open var autoValidateNumber: Bool = true
     
     open var maxDigits: Int? {
         didSet { self.partialFormatter.maxDigits = maxDigits }
@@ -55,16 +57,16 @@ open class PhoneNumberFieldDelegate: NSObject, PhoneNumberFieldDelegateProtocol 
         }
     }
     
-    public var nationalNumber: String {
+    open var nationalNumber: String {
         get { return self.partialFormatter.nationalNumber(from: self.text ?? String()) }
     }
     
-    public var isValidNumber: Bool {
+    open var isValidNumber: Bool {
         get { return ( try? self.phoneNumberKit.parse(self.text ?? String(), withRegion: self.currentRegion)) == nil ? false : true
         }
     }
     
-    lazy var nonNumericSet: CharacterSet = {
+    lazy internal var nonNumericSet: CharacterSet = {
         var mutableSet = NSMutableCharacterSet.decimalDigit().inverted
         mutableSet.remove(charactersIn: PhoneNumberConstants.plusChars)
         return mutableSet as CharacterSet
@@ -78,7 +80,7 @@ open class PhoneNumberFieldDelegate: NSObject, PhoneNumberFieldDelegateProtocol 
         NotificationCenter.default.addObserver(self, selector: #selector(self.setupTextInput(_:)), name: NSNotification.Name.UITextViewTextDidEndEditing, object: nil)        
     }
 
-    convenience init(delegate: UITextFieldDelegate) {
+    public convenience init(delegate: UITextFieldDelegate) {
         self.init()
         self.subDelegate = delegate
     }
@@ -148,7 +150,7 @@ open class PhoneNumberFieldDelegate: NSObject, PhoneNumberFieldDelegateProtocol 
         return nil
     }
     
-    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    open func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         // This allows for the case when a user autocompletes a phone number:
         if (( range == NSRange(location: 0, length: 0)) && ( string == " " )) {
@@ -161,9 +163,16 @@ open class PhoneNumberFieldDelegate: NSObject, PhoneNumberFieldDelegateProtocol 
             else {
             return false
         }
+
+        guard self.isPartialFormatterEnabled else { return true }
         
         let changedRange: String = text.substring(with: range)
-        let modifiedText: String = text.replacingCharacters(in: text.range(from: range)!, with: string)
+        var modifiedText: String = text.replacingCharacters(in: text.range(from: range)!, with: string)
+        
+        // Handle backspace after whitespace
+        if (( !modifiedText.isEmpty ) && ( modifiedText.count <  ( textField.text?.count ?? 0 ))) {
+            modifiedText = self.partialFormatter.formatPartial(modifiedText)
+        }
         
         let rawNumberString: String = modifiedText.filter {
             String($0).rangeOfCharacter(from: self.nonNumericSet) == nil
@@ -199,31 +208,40 @@ open class PhoneNumberFieldDelegate: NSObject, PhoneNumberFieldDelegateProtocol 
     
     //MARK: UITextfield Delegate
     
-    public func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
+    open func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
         self.subDelegate?.textFieldDidEndEditing?(textField, reason: reason)
     }
     
-    public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+    open func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         return self.subDelegate?.textFieldShouldBeginEditing?(textField) ?? true
     }
     
-    public func textFieldDidBeginEditing(_ textField: UITextField) {
+    open func textFieldDidBeginEditing(_ textField: UITextField) {
         self.subDelegate?.textFieldDidBeginEditing?(textField)
     }
     
-    public func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+    open func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         return self.subDelegate?.textFieldShouldEndEditing?(textField) ?? true
     }
     
-    public func textFieldDidEndEditing(_ textField: UITextField) {
+    open func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        if (( self.isPartialFormatterEnabled ) && ( textField.text != nil )) {
+            textField.text = self.partialFormatter.formatPartial(textField.text!)
+        }
+
+        if (( self.isPartialFormatterEnabled ) && ( self.autoValidateNumber ) && ( textField.text != nil )) {
+            textField.text = self.partialFormatter.isValidRawNumber(textField.text!) ? textField.text : nil
+        }
+        
         self.subDelegate?.textFieldDidEndEditing?(textField)
     }
     
-    public func textFieldShouldClear(_ textField: UITextField) -> Bool {
+    open func textFieldShouldClear(_ textField: UITextField) -> Bool {
         return self.subDelegate?.textFieldShouldClear?(textField) ?? true
     }
     
-    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    open func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return self.subDelegate?.textFieldShouldReturn?(textField) ?? true
     }
 
