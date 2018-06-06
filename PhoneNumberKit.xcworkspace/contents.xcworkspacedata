@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:examples/PhoneBook/Sample.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/osku/Documents/Projects/Frameworks/PhoneNumberKit/examples/AsYouType/AsYouTypeSample.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:PhoneNumberKit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../CommonKit/CommonKit/CommonKit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../NumPad/NumPad/NumPad.xcodeproj">
+   </FileRef>
+</Workspace>

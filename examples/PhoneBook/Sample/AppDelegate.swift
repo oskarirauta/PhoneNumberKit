@@ -11,11 +11,17 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
-
-
+    lazy var window: UIWindow? = {
+        var _window: UIWindow = UIWindow(frame: UIScreen.main.bounds)
+        _window.backgroundColor = UIColor.white
+        _window.rootViewController = ViewController()
+        _window.makeKeyAndVisible()
+        return _window
+    }()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let _ = self.window
         return true
     }
 

@@ -80,7 +80,7 @@ open class PhoneNumberFieldDelegate: NSObject, PhoneNumberFieldDelegateProtocol 
         NotificationCenter.default.addObserver(self, selector: #selector(self.setupTextInput(_:)), name: NSNotification.Name.UITextViewTextDidEndEditing, object: nil)        
     }
 
-    public convenience init(delegate: UITextFieldDelegate) {
+    public convenience init(delegate: UITextFieldDelegate?) {
         self.init()
         self.subDelegate = delegate
     }

@@ -10,7 +10,7 @@ import Foundation
 #if os(iOS)
 import CoreTelephony
 #endif
-import LocaleKit
+import CommonKit
 
 public final class PhoneNumberKit: NSObject {
     
