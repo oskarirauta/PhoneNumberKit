@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import CommonKit
-//import LocaleKit
 
 /// Custom text field that formats phone numbers
 open class PhoneNumberTextField: UITextField {

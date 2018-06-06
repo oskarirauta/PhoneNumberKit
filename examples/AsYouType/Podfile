@@ -5,6 +5,7 @@ target 'Sample' do
 
   # Pods for Sample
   pod 'PhoneNumberKit', :path => '../..'
+  pod 'CommonKit', git: 'https://github.com/oskarirauta/CommonKit.git'
 
   target 'SampleTests' do
     inherit! :search_paths

@@ -15,9 +15,6 @@
 		347209751BB808D1004DE6DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 347209731BB808D1004DE6DA /* LaunchScreen.storyboard */; };
 		347209801BB808D1004DE6DA /* SampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3472097F1BB808D1004DE6DA /* SampleTests.swift */; };
 		3472098E1BB80A4F004DE6DA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3472098D1BB80A4F004DE6DA /* Foundation.framework */; };
-		6E88F4A420AD4D88002969A7 /* NumPad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E88F4A320AD4D88002969A7 /* NumPad.framework */; };
-		6EB6963C20ACDF790077EE6D /* PhoneNumberKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB6963B20ACDF790077EE6D /* PhoneNumberKit.framework */; };
-		6EF2E17820C7DB5900AA108B /* CommonKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF2E17720C7DB5900AA108B /* CommonKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,9 +64,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EF2E17820C7DB5900AA108B /* CommonKit.framework in Frameworks */,
-				6E88F4A420AD4D88002969A7 /* NumPad.framework in Frameworks */,
-				6EB6963C20ACDF790077EE6D /* PhoneNumberKit.framework in Frameworks */,
 				344D875A1BDED6A600487684 /* ContactsUI.framework in Frameworks */,
 				344D87571BDED6A200487684 /* Contacts.framework in Frameworks */,
 				3472098E1BB80A4F004DE6DA /* Foundation.framework in Frameworks */,

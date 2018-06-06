@@ -10,10 +10,4 @@
    <FileRef
       location = "group:PhoneNumberKit.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:../CommonKit/CommonKit/CommonKit.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:../NumPad/NumPad/NumPad.xcodeproj">
-   </FileRef>
 </Workspace>
