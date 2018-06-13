@@ -28,6 +28,7 @@
 		34AA66021BDD160B00467912 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AA66011BDD160B00467912 /* Constants.swift */; };
 		34AA66041BDD448B00467912 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34AA66031BDD448B00467912 /* CoreTelephony.framework */; };
 		6E88F4AC20AD9EE1002969A7 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E88F4AB20AD9EE1002969A7 /* TextFieldDelegate.swift */; };
+		6E8F13F920D1B4A600151AA0 /* CommonKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8F13F820D1B4A600151AA0 /* CommonKit.framework */; };
 		C6DF6CA81D1B145300259F4B /* PhoneNumberKit.h in Headers */ = {isa = PBXBuildFile; fileRef = C6DF6CA71D1B145300259F4B /* PhoneNumberKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,7 @@
 		34AA66011BDD160B00467912 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		34AA66031BDD448B00467912 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		6E88F4AB20AD9EE1002969A7 /* TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
+		6E8F13F820D1B4A600151AA0 /* CommonKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CommonKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EB6963620ACDF650077EE6D /* LocaleKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LocaleKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EF2E17320C7D5C900AA108B /* CommonKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CommonKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6DF6C4B1D1B09CF00259F4B /* PhoneNumberKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PhoneNumberKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +82,7 @@
 			files = (
 				34AA66041BDD448B00467912 /* CoreTelephony.framework in Frameworks */,
 				347209901BB80A69004DE6DA /* Foundation.framework in Frameworks */,
+				6E8F13F920D1B4A600151AA0 /* CommonKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +182,7 @@
 		6EB6963520ACDF650077EE6D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6E8F13F820D1B4A600151AA0 /* CommonKit.framework */,
 				6EF2E17320C7D5C900AA108B /* CommonKit.framework */,
 				6EB6963620ACDF650077EE6D /* LocaleKit.framework */,
 			);
