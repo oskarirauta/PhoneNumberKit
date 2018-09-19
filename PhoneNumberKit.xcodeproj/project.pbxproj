@@ -28,7 +28,7 @@
 		34AA66021BDD160B00467912 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AA66011BDD160B00467912 /* Constants.swift */; };
 		34AA66041BDD448B00467912 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34AA66031BDD448B00467912 /* CoreTelephony.framework */; };
 		6E88F4AC20AD9EE1002969A7 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E88F4AB20AD9EE1002969A7 /* TextFieldDelegate.swift */; };
-		6E8F13F920D1B4A600151AA0 /* CommonKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8F13F820D1B4A600151AA0 /* CommonKit.framework */; };
+		6EE0C5CB215220FD00FA2A18 /* CommonKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE0C5CA215220EE00FA2A18 /* CommonKit.framework */; };
 		C6DF6CA81D1B145300259F4B /* PhoneNumberKit.h in Headers */ = {isa = PBXBuildFile; fileRef = C6DF6CA71D1B145300259F4B /* PhoneNumberKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -39,6 +39,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 342418631BB6E5A000EE70E7;
 			remoteInfo = PhoneNumberKit;
+		};
+		6EE0C5C9215220EE00FA2A18 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6EE0C5C5215220EE00FA2A18 /* CommonKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6E3C4FDD20A0E119009C3ED7;
+			remoteInfo = CommonKit;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -68,6 +75,7 @@
 		6E88F4AB20AD9EE1002969A7 /* TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
 		6E8F13F820D1B4A600151AA0 /* CommonKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CommonKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EB6963620ACDF650077EE6D /* LocaleKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LocaleKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6EE0C5C5215220EE00FA2A18 /* CommonKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CommonKit.xcodeproj; path = ../CommonKit/CommonKit/CommonKit.xcodeproj; sourceTree = "<group>"; };
 		6EF2E17320C7D5C900AA108B /* CommonKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CommonKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6DF6C4B1D1B09CF00259F4B /* PhoneNumberKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PhoneNumberKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6DF6C911D1B120400259F4B /* PhoneNumberKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PhoneNumberKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,9 +88,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34AA66041BDD448B00467912 /* CoreTelephony.framework in Frameworks */,
 				347209901BB80A69004DE6DA /* Foundation.framework in Frameworks */,
-				6E8F13F920D1B4A600151AA0 /* CommonKit.framework in Frameworks */,
+				34AA66041BDD448B00467912 /* CoreTelephony.framework in Frameworks */,
+				6EE0C5CB215220FD00FA2A18 /* CommonKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,11 +190,20 @@
 		6EB6963520ACDF650077EE6D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6EE0C5C5215220EE00FA2A18 /* CommonKit.xcodeproj */,
 				6E8F13F820D1B4A600151AA0 /* CommonKit.framework */,
 				6EF2E17320C7D5C900AA108B /* CommonKit.framework */,
 				6EB6963620ACDF650077EE6D /* LocaleKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6EE0C5C6215220EE00FA2A18 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6EE0C5CA215220EE00FA2A18 /* CommonKit.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,7 +268,7 @@
 				TargetAttributes = {
 					342418631BB6E5A000EE70E7 = {
 						CreatedOnToolsVersion = 7.0;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1000;
 					};
 					3424186D1BB6E5A000EE70E7 = {
 						CreatedOnToolsVersion = 7.0;
@@ -269,6 +286,12 @@
 			mainGroup = 3424185A1BB6E5A000EE70E7;
 			productRefGroup = 342418651BB6E5A000EE70E7 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 6EE0C5C6215220EE00FA2A18 /* Products */;
+					ProjectRef = 6EE0C5C5215220EE00FA2A18 /* CommonKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				342418631BB6E5A000EE70E7 /* PhoneNumberKit */,
@@ -276,6 +299,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		6EE0C5CA215220EE00FA2A18 /* CommonKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CommonKit.framework;
+			remoteRef = 6EE0C5C9215220EE00FA2A18 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		342418621BB6E5A000EE70E7 /* Resources */ = {
@@ -466,13 +499,13 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = PhoneNumberKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.oskarirauta.PhoneNumberKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -488,13 +521,13 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = PhoneNumberKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.oskarirauta.PhoneNumberKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

@@ -76,8 +76,8 @@ open class PhoneNumberFieldDelegate: NSObject, PhoneNumberFieldDelegateProtocol 
         super.init()
         self.textInput = nil
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.setupTextInput(_:)), name: NSNotification.Name.UITextFieldTextDidBeginEditing, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.setupTextInput(_:)), name: NSNotification.Name.UITextViewTextDidEndEditing, object: nil)        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.setupTextInput(_:)), name: UITextField.textDidBeginEditingNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.setupTextInput(_:)), name: UITextView.textDidEndEditingNotification, object: nil)        
     }
 
     public convenience init(delegate: UITextFieldDelegate?) {
@@ -96,8 +96,8 @@ open class PhoneNumberFieldDelegate: NSObject, PhoneNumberFieldDelegateProtocol 
         (textInput as! UITextField).autocorrectionType = .no
         self.textInput = textInput
         
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UITextFieldTextDidBeginEditing, object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UITextViewTextDidBeginEditing, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UITextField.textDidBeginEditingNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UITextView.textDidBeginEditingNotification, object: nil)
     }
 
     
@@ -208,7 +208,7 @@ open class PhoneNumberFieldDelegate: NSObject, PhoneNumberFieldDelegateProtocol 
     
     //MARK: UITextfield Delegate
     
-    open func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
+    open func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
         self.subDelegate?.textFieldDidEndEditing?(textField, reason: reason)
     }
     

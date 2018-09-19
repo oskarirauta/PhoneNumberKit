@@ -91,7 +91,7 @@ class ViewController: UIViewController, CNContactPickerDelegate {
         var _selectButton: UIButton = UIButton(type: .system)
         _selectButton.translatesAutoresizingMaskIntoConstraints = false
         _selectButton.titleLabel?.font = UIFont.systemFont(ofSize: 19.0)
-        _selectButton.setTitle("Select from Contacts", for: UIControlState())
+        _selectButton.setTitle("Select from Contacts", for: UIControl.State())
         _selectButton.addTarget(self, action: #selector(self.selectFromContacts(_:)), for: .touchUpInside)
         return _selectButton
     }()
