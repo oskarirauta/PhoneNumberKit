@@ -150,9 +150,12 @@ public final class PhoneNumberKit: NSObject {
     public class func defaultRegionCode() -> String {
 #if os(iOS)
         let networkInfo = CTTelephonyNetworkInfo()
-        let carrier = networkInfo.subscriberCellularProvider
-        if let isoCountryCode = carrier?.isoCountryCode {
-            return isoCountryCode.uppercased()
+        if let carrier = networkInfo.serviceSubscriberCellularProviders {
+            for _carrier in carrier {
+                if let isoCountryCode = _carrier.value.isoCountryCode {
+                    return isoCountryCode.uppercased()
+                }
+            }
         }
 #endif
         let currentLocale = Locale.appLocale

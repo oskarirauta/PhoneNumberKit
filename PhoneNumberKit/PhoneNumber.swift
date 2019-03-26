@@ -40,6 +40,15 @@ extension PhoneNumber : Equatable {
 
 extension PhoneNumber : Hashable {
 
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(countryCode.hashValue)
+        hasher.combine(nationalNumber.hashValue)
+        hasher.combine(leadingZero.hashValue)
+        if let numberExtension = numberExtension {
+            hasher.combine(numberExtension.hashValue)
+        }
+    }
+    
     public var hashValue: Int {
         return countryCode.hashValue ^ nationalNumber.hashValue ^ leadingZero.hashValue ^ (numberExtension?.hashValue ?? 0)
     }
@@ -65,7 +74,7 @@ public extension PhoneNumber {
     - Parameter rawNumber: String to be parsed to phone number struct.
     */
     @available(*, unavailable, message: "use PhoneNumberKit instead to produce PhoneNumbers")
-    public init(rawNumber: String) throws {
+    init(rawNumber: String) throws {
         assertionFailure(PhoneNumberError.deprecated.localizedDescription)
         throw PhoneNumberError.deprecated
     }
@@ -77,7 +86,7 @@ public extension PhoneNumber {
     - Parameter region: ISO 639 compliant region code.
     */
     @available(*, unavailable, message: "use PhoneNumberKit instead to produce PhoneNumbers")
-    public init(rawNumber: String, region: String) throws {
+    init(rawNumber: String, region: String) throws {
         throw PhoneNumberError.deprecated
     }
 
