@@ -33,7 +33,7 @@ Pod::Spec.new do |s|
   s.dependency 'CommonKit'
 
   s.ios.frameworks = 'CoreTelephony'
-  s.ios.deployment_target = '12.1'
+  s.ios.deployment_target = '13.1'
 
   s.pod_target_xcconfig = { 'SWIFT_VERSION' => '5.0' }
   s.source_files	= [
