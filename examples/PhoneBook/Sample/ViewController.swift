@@ -17,7 +17,7 @@ class ViewController: UIViewController, CNContactPickerDelegate {
         var _numberTitle: UILabel = UILabel(frame: .zero)
         _numberTitle.translatesAutoresizingMaskIntoConstraints = false
         _numberTitle.font = UIFont.systemFont(ofSize: 25.0)
-        _numberTitle.textColor = UIColor.black
+        _numberTitle.textColor = UIColor.label
         _numberTitle.textAlignment = .center
         _numberTitle.text = "Parsed number"
         return _numberTitle
@@ -27,7 +27,7 @@ class ViewController: UIViewController, CNContactPickerDelegate {
         var _numberLabel: UILabel = UILabel(frame: .zero)
         _numberLabel.translatesAutoresizingMaskIntoConstraints = false
         _numberLabel.font = UIFont.systemFont(ofSize: 32.0, weight: .thin)
-        _numberLabel.textColor = UIColor.black
+        _numberLabel.textColor = UIColor.label
         _numberLabel.textAlignment = .center
         _numberLabel.text = self.notAvailable
         return _numberLabel
@@ -37,7 +37,7 @@ class ViewController: UIViewController, CNContactPickerDelegate {
         var _countryCodeTitle: UILabel = UILabel(frame: .zero)
         _countryCodeTitle.translatesAutoresizingMaskIntoConstraints = false
         _countryCodeTitle.font = UIFont.systemFont(ofSize: 25.0)
-        _countryCodeTitle.textColor = UIColor.black
+        _countryCodeTitle.textColor = UIColor.label
         _countryCodeTitle.textAlignment = .center
         _countryCodeTitle.text = "Country Code"
         return _countryCodeTitle
@@ -47,7 +47,7 @@ class ViewController: UIViewController, CNContactPickerDelegate {
         var _countryCodeLabel: UILabel = UILabel(frame: .zero)
         _countryCodeLabel.translatesAutoresizingMaskIntoConstraints = false
         _countryCodeLabel.font = UIFont.systemFont(ofSize: 32.0, weight: .thin)
-        _countryCodeLabel.textColor = UIColor.black
+        _countryCodeLabel.textColor = UIColor.label
         _countryCodeLabel.textAlignment = .center
         _countryCodeLabel.text = self.notAvailable
         return _countryCodeLabel
@@ -57,7 +57,7 @@ class ViewController: UIViewController, CNContactPickerDelegate {
         var _countryTitle: UILabel = UILabel(frame: .zero)
         _countryTitle.translatesAutoresizingMaskIntoConstraints = false
         _countryTitle.font = UIFont.systemFont(ofSize: 25.0)
-        _countryTitle.textColor = UIColor.black
+        _countryTitle.textColor = UIColor.label
         _countryTitle.textAlignment = .center
         _countryTitle.text = "Main country"
         return _countryTitle
@@ -67,7 +67,7 @@ class ViewController: UIViewController, CNContactPickerDelegate {
         var _countryLabel: UILabel = UILabel(frame: .zero)
         _countryLabel.translatesAutoresizingMaskIntoConstraints = false
         _countryLabel.font = UIFont.systemFont(ofSize: 32.0, weight: .thin)
-        _countryLabel.textColor = UIColor.black
+        _countryLabel.textColor = UIColor.label
         _countryLabel.textAlignment = .center
         _countryLabel.text = self.notAvailable
         return _countryLabel

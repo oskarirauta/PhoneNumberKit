@@ -44,6 +44,7 @@
 		6EB6963920ACDF6F0077EE6D /* LocaleKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LocaleKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EB6963B20ACDF790077EE6D /* PhoneNumberKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PhoneNumberKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EE0C5EF21523B2A00FA2A18 /* PhoneNumberKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PhoneNumberKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6EF279DE23AB60AE00E74F82 /* AsYouTypeSample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AsYouTypeSample.entitlements; sourceTree = "<group>"; };
 		6EF2E17720C7DB5900AA108B /* CommonKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CommonKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -65,6 +66,7 @@
 		3472095E1BB808D1004DE6DA = {
 			isa = PBXGroup;
 			children = (
+				6EF279DE23AB60AE00E74F82 /* AsYouTypeSample.entitlements */,
 				347209691BB808D1004DE6DA /* Sample */,
 				347209681BB808D1004DE6DA /* Products */,
 				6EB6963820ACDF6F0077EE6D /* Frameworks */,
@@ -138,6 +140,7 @@
 				TargetAttributes = {
 					347209661BB808D1004DE6DA = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = LBFBZP3Z4J;
 						LastSwiftMigration = 1020;
 					};
 				};
@@ -243,7 +246,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -294,7 +297,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
@@ -309,14 +312,20 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AsYouTypeSample.entitlements;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = LBFBZP3Z4J;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Sample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.2;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.roymarmelstein.Sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -325,14 +334,20 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AsYouTypeSample.entitlements;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = LBFBZP3Z4J;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Sample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.2;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.roymarmelstein.Sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
