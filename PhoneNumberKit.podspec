@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PhoneNumberKit'
-  s.version          = '2.5.3'
+  s.version          = '2.5.4'
   s.summary          = 'Swift framework for working with phone numbers (Forked)'
 
 # This description is used to generate tags and improve search results.
@@ -34,7 +34,7 @@ Pod::Spec.new do |s|
 
   s.ios.frameworks = 'CoreTelephony'
   s.swift_version = '5.0'
-  s.ios.deployment_target = '13.1'
+  s.ios.deployment_target = '13.2'
 
   #s.pod_target_xcconfig = { 'SWIFT_VERSION' => '5.0' }
   s.source_files	= [
