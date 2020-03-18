@@ -45,7 +45,7 @@ final class MetadataManager {
     /// - returns: array of MetadataTerritory objects
     fileprivate func populateTerritories() -> [MetadataTerritory] {
         var territoryArray = [MetadataTerritory]()
-        let frameworkBundle = Bundle(for: PhoneNumberKit.self)
+        let frameworkBundle: Bundle = .PhoneNumberKit
         do {
             if let jsonPath = frameworkBundle.path(forResource: "PhoneNumberMetadata", ofType: "json"), let jsonData = try? Data(contentsOf: URL(fileURLWithPath: jsonPath)), let jsonObjects = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary, let metadataDict = jsonObjects["phoneNumberMetadata"] as? NSDictionary, let metadataTerritories = metadataDict["territories"] as? NSDictionary , let metadataTerritoryArray = metadataTerritories["territory"] as? NSArray {
                     metadataTerritoryArray.forEach({

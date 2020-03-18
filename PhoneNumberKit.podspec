@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PhoneNumberKit'
-  s.version          = '2.5.4'
+  s.version          = '2.5.5'
   s.summary          = 'Swift framework for working with phone numbers (Forked)'
 
 # This description is used to generate tags and improve search results.
