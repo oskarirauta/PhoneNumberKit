@@ -55,7 +55,7 @@ extension PhoneNumber : Hashable {
 
 }
 
-extension PhoneNumber{
+extension PhoneNumber {
     
     public static func notPhoneNumber() -> PhoneNumber{
         return PhoneNumber(numberString: "", countryCode: 0, leadingZero: false, nationalNumber: 0, numberExtension: nil, type: .notParsed)
